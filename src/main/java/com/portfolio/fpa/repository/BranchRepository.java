@@ -13,4 +13,7 @@ public interface BranchRepository extends JpaRepository<Branch, Long> {
 
     // Query untuk mencari cabang berdasarkan nama cabang secara spesifik
     Optional<Branch> findByBranchName(String branchName);
+
+    // Query untuk mencari cabang berdasarkan code cabang secara spesifik
+    Optional<Branch> findByBranchCode(String branchCode);
 }
