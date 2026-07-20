@@ -68,5 +68,5 @@ public class DataInitializer implements CommandLineRunner {
                     .build());
         }
     }
-    }
 }
+
