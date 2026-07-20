@@ -12,5 +12,5 @@ public interface OpexActualRepository extends JpaRepository<OpexActual, Long> {
     List<OpexActual> findByBranchIdAndPeriodMonthAndPeriodYear(Long branchId, Integer periodMonth, Integer periodYear);
 
     // Menemukan pengeluaran berdasarkan kode kategori tertentu di satu cabang pada tahun berjalan
-    List<OpexActual> findByBranchIdAndOpexCodeCategoryAndPeriodYear(Long branchId, String opexCodeCategory, Integer periodYear);
+    List<OpexActual> findByBranchIdAndActualCodeAndPeriodYear(Long branchId, String actualCode, Integer periodYear);
 }

@@ -16,7 +16,7 @@ public interface OpexBudgetRepository extends JpaRepository<OpexBudget, Long> {
     List<OpexBudget> findByPeriodYear(Integer periodYear);
 
     // Membantu mencegah duplikasi input budget dengan kategori & kode yang sama di cabang & periode yang sama
-    boolean existsByBranchIdAndOpexCodeCategoryAndPeriodMonthAndPeriodYear(
-            Long branchId, String opexCodeCategory, Integer periodMonth, Integer periodYear
+    boolean existsByBranchIdAndBudgetCodeAndPeriodMonthAndPeriodYear(
+            Long branchId, String budgetCode, Integer periodMonth, Integer periodYear
     );
 }
