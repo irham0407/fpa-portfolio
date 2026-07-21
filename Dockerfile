@@ -1,5 +1,5 @@
 # Gunakan JDK 17 / 21 sesuai versi project
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 
 # Set folder kerja di dalam container
 WORKDIR /app
