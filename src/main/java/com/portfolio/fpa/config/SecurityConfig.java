@@ -32,10 +32,23 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Nonaktifkan CSRF untuk kemudahan pengujian REST API
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Endpoint Login/Register dibuka publik
-                        .requestMatchers("/api/branches/**", "/api/coas/**").permitAll() // PERUBAHAN: Diberi izin publik agar seeder/Insomnia tidak terhalang 401
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN") // Endpoint khusus Admin
-                        .anyRequest().authenticated() // Sisa endpoint wajib login/autentikasi
+                        // 1. Endpoint Autentikasi (Publik)
+                        .requestMatchers("/api/auth/**").permitAll()
+
+                        // 2. Master Data (Diizinkan publik untuk kemudahan seeding/testing)
+                        .requestMatchers("/api/branches/**", "/api/coas/**").permitAll()
+
+                        // 3. BARU: SEMUA ENDPOINT ACTUAL (OPEX, REVENUE, CAPEX, dll.) -> HANYA ADMIN
+                        .requestMatchers("/api/*-actuals/**").hasRole("ADMIN")
+
+                        // 4. BARU: SEMUA ENDPOINT BUDGET (OPEX, REVENUE, CAPEX, dll.) -> ADMIN & USER (Asal Sudah Login)
+                        .requestMatchers("/api/*-budgets/**").authenticated()
+
+                        // 5. Endpoint Khusus Admin Lainnya
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+
+                        // 6. Sisa Endpoint Lain Wajib Authenticated
+                        .anyRequest().authenticated()
                 )
                 .httpBasic(httpBasic -> {}); // Menggunakan HTTP Basic Auth untuk pengujian via Insomnia/Postman
 
