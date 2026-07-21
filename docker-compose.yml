@@ -9,8 +9,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: fpa_db
-      MYSQL_USER: irham
-      MYSQL_PASSWORD: irham123456
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     ports:
       - "3306:3306" # Agar DBeaver dari luar tetap bisa connect
     volumes:
