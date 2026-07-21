@@ -6,6 +6,7 @@ import com.portfolio.fpa.repository.CoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,8 +16,11 @@ public class CoaService {
     @Autowired
     private CoaRepository coaRepository;
 
-    // Simpan 1 COA
+    // 1. Simpan 1 COA
     public CoaRequest createCoa(CoaRequest request) {
+        if (coaRepository.existsByCoaCode(request.getCoaCode())) {
+            return null;
+        }
         Coa coa = Coa.builder()
                 .coaCode(request.getCoaCode())
                 .coaName(request.getCoaName())
@@ -27,21 +31,30 @@ public class CoaService {
         return mapToRequest(saved);
     }
 
-    // Simpan Banyak COA Sekaligus (Bulk)
+    // 2. Simpan Banyak COA (Bulk - Skip Duplikat)
     public List<CoaRequest> createBulkCoas(List<CoaRequest> requests) {
-        List<Coa> coas = requests.stream()
-                .map(req -> Coa.builder()
+        List<Coa> coasToSave = new ArrayList<>();
+
+        for (CoaRequest req : requests) {
+            if (!coaRepository.existsByCoaCode(req.getCoaCode())) {
+                Coa coa = Coa.builder()
                         .coaCode(req.getCoaCode())
                         .coaName(req.getCoaName())
                         .accountType(req.getAccountType())
-                        .build())
-                .collect(Collectors.toList());
+                        .build();
+                coasToSave.add(coa);
+            }
+        }
 
-        List<Coa> savedList = coaRepository.saveAll(coas);
+        if (coasToSave.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<Coa> savedList = coaRepository.saveAll(coasToSave);
         return savedList.stream().map(this::mapToRequest).collect(Collectors.toList());
     }
 
-    // Ambil Semua COA
+    // 3. Ambil Semua COA
     public List<CoaRequest> getAllCoas() {
         return coaRepository.findAll().stream()
                 .map(this::mapToRequest)

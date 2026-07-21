@@ -6,6 +6,7 @@ import com.portfolio.fpa.repository.BranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,8 +16,11 @@ public class BranchService {
     @Autowired
     private BranchRepository branchRepository;
 
-    // Simpan 1 Branch
+    // 1. Simpan 1 Branch
     public BranchRequest createBranch(BranchRequest request) {
+        if (branchRepository.existsByBranchCode(request.getBranchCode())) {
+            return null; // atau lemparkan exception jika duplikat
+        }
         Branch branch = Branch.builder()
                 .branchCode(request.getBranchCode())
                 .branchName(request.getBranchName())
@@ -27,21 +31,30 @@ public class BranchService {
         return mapToRequest(saved);
     }
 
-    // Simpan Banyak Branch Sekaligus (Bulk)
+    // 2. Simpan Banyak Branch (Bulk - Skip Duplikat)
     public List<BranchRequest> createBulkBranches(List<BranchRequest> requests) {
-        List<Branch> branches = requests.stream()
-                .map(req -> Branch.builder()
+        List<Branch> branchesToSave = new ArrayList<>();
+
+        for (BranchRequest req : requests) {
+            if (!branchRepository.existsByBranchCode(req.getBranchCode())) {
+                Branch branch = Branch.builder()
                         .branchCode(req.getBranchCode())
                         .branchName(req.getBranchName())
                         .location(req.getLocation())
-                        .build())
-                .collect(Collectors.toList());
+                        .build();
+                branchesToSave.add(branch);
+            }
+        }
 
-        List<Branch> savedList = branchRepository.saveAll(branches);
+        if (branchesToSave.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<Branch> savedList = branchRepository.saveAll(branchesToSave);
         return savedList.stream().map(this::mapToRequest).collect(Collectors.toList());
     }
 
-    // Ambil Semua Branch
+    // 3. Ambil Semua Branch
     public List<BranchRequest> getAllBranches() {
         return branchRepository.findAll().stream()
                 .map(this::mapToRequest)

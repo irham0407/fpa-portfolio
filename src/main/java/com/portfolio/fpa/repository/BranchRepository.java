@@ -8,6 +8,9 @@ import java.util.Optional;
 @Repository
 public interface BranchRepository extends JpaRepository<Branch, Long> {
 
+    // Query untuk mengecek apakah kode cabang sudah terdaftar
+    boolean existsByBranchCode(String branchCode);
+
     // Query bantuan untuk mengecek apakah nama cabang sudah terdaftar atau belum
     boolean existsByBranchName(String branchName);
 
