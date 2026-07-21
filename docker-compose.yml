@@ -5,7 +5,7 @@ services:
     image: mariadb:latest
     container_name: mariadb-opex-db
     environment:
-      MARIADB_ROOT_PASSWORD: rootpassword
+      MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: opex_fpa_db
       MARIADB_USER: opex_user
       MARIADB_PASSWORD: opexpassword
