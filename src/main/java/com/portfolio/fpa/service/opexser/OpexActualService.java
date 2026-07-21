@@ -73,7 +73,7 @@ public class OpexActualService {
                 actual.setActualAmount(amount);
                 actual.setPeriodMonth(periodMonth);
                 actual.setPeriodYear(periodYear);
-                actual.setTransactionDate(transDate);
+                actual.setTransactionDate(transDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 actual.setDescription(description);
                 actual.setBranch(branch);
                 actual.setCoa(coa);
