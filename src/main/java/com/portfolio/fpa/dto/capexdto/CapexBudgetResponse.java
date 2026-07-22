@@ -1,4 +1,4 @@
-package com.portfolio.fpa.dto.opexdto;
+package com.portfolio.fpa.dto.capexdto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.time.Instant;
 
 @Data
 @Builder
-public class OpexBudgetResponse {
+public class CapexBudgetResponse {
     private Long id;
     private String budgetCode;
     private Long branchId;

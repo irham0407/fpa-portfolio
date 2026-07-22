@@ -1,12 +1,11 @@
-package com.portfolio.fpa.dto.opexdto;
+package com.portfolio.fpa.dto.revenucedto;
 
 import lombok.Data;
-
 import java.math.BigDecimal;
 import java.time.Instant;
 
 @Data
-public class OpexActualRequest {
+public class RevenueActualRequest {
     private Long branchId;
     private Long coaId;
     private BigDecimal actualAmount;

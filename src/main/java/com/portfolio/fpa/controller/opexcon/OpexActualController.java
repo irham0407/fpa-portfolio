@@ -1,4 +1,4 @@
-package com.portfolio.fpa.controller.opexcontroller;
+package com.portfolio.fpa.controller.opexcon;
 
 import com.portfolio.fpa.service.opexser.OpexActualService;
 import org.springframework.beans.factory.annotation.Autowired;

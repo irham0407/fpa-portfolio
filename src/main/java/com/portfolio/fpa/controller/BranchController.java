@@ -1,4 +1,4 @@
-package com.portfolio.fpa.controller.branchcontroll;
+package com.portfolio.fpa.controller;
 
 import com.portfolio.fpa.dto.branchdto.BranchRequest;
 import com.portfolio.fpa.service.branchser.BranchService;

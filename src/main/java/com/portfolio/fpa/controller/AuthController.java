@@ -1,4 +1,4 @@
-package com.portfolio.fpa.controller.authcontroller;
+package com.portfolio.fpa.controller;
 
 import com.portfolio.fpa.dto.authdto.LoginRequest;
 import com.portfolio.fpa.dto.authdto.RegisterRequest;

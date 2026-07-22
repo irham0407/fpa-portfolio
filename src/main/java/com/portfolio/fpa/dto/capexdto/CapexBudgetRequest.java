@@ -1,11 +1,12 @@
-package com.portfolio.fpa.dto.opexdto;
+package com.portfolio.fpa.dto.capexdto;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
-public class OpexBudgetRequest {
+public class CapexBudgetRequest {
     private Long branchId;
     private Long coaId;
     private BigDecimal budgetAmount;

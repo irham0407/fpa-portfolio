@@ -1,4 +1,4 @@
-package com.portfolio.fpa.controller.coacontroll;
+package com.portfolio.fpa.controller;
 
 import com.portfolio.fpa.dto.coadto.CoaRequest;
 import com.portfolio.fpa.service.coaser.CoaService;
