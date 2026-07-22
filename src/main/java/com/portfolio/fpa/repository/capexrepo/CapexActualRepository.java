@@ -19,4 +19,7 @@ public interface CapexActualRepository extends JpaRepository<CapexActual, Long> 
 
     // Method untuk mencari data berdasarkan actualCode
     Optional<CapexActual> findByActualCode(String actualCode);
+
+    // Contoh deklarasi query method yang ada di masing-masing Repository
+    List<CapexActual> findByPeriodYearAndPeriodMonth(Integer periodYear, Integer periodMonth);
 }

@@ -17,4 +17,7 @@ public interface OpexActualRepository extends JpaRepository<OpexActual, Long> {
 
     // Method untuk mencari data berdasarkan actualCode
     Optional<OpexActual> findByActualCode(String actualCode);
+
+    // Contoh deklarasi query method yang ada di masing-masing Repository
+    List<OpexActual> findByPeriodYearAndPeriodMonth(Integer periodYear, Integer periodMonth);
 }

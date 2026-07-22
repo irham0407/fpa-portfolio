@@ -19,4 +19,7 @@ public interface OpexBudgetRepository extends JpaRepository<OpexBudget, Long> {
     boolean existsByBranchIdAndBudgetCodeAndPeriodMonthAndPeriodYear(
             Long branchId, String budgetCode, Integer periodMonth, Integer periodYear
     );
+
+    // Contoh deklarasi query method yang ada di masing-masing Repository
+    List<OpexBudget> findByPeriodYearAndPeriodMonth(Integer periodYear, Integer periodMonth);
 }

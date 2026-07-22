@@ -17,4 +17,7 @@ public interface RevenueActualRepository  extends JpaRepository<RevenueActual, L
 
     // Method untuk mencari data berdasarkan actualCode
     Optional<RevenueActual> findByActualCode(String actualCode);
+
+    // Contoh deklarasi query method yang ada di masing-masing Repository
+    List<RevenueActual> findByPeriodYearAndPeriodMonth(Integer periodYear, Integer periodMonth);
 }

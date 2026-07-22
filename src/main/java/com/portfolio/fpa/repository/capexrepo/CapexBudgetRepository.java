@@ -20,4 +20,7 @@ public interface CapexBudgetRepository extends JpaRepository<CapexBudget, Long> 
     boolean existsByBranchIdAndBudgetCodeAndPeriodMonthAndPeriodYear(
             Long branchId, String budgetCode, Integer periodMonth, Integer periodYear
     );
+
+    // Contoh deklarasi query method yang ada di masing-masing Repository
+    List<CapexBudget> findByPeriodYearAndPeriodMonth(Integer periodYear, Integer periodMonth);
 }

@@ -19,4 +19,7 @@ public interface RevenueBudgetRepository extends JpaRepository<RevenueBudget, Lo
     boolean existsByBranchIdAndBudgetCodeAndPeriodMonthAndPeriodYear(
             Long branchId, String budgetCode, Integer periodMonth, Integer periodYear
     );
+
+    // Contoh deklarasi query method yang ada di masing-masing Repository
+    List<RevenueBudget> findByPeriodYearAndPeriodMonth(Integer periodYear, Integer periodMonth);
 }

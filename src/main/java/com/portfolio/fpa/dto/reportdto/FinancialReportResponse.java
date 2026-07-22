@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
 
 @Data
 @Builder
@@ -13,22 +15,34 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class FinancialReportResponse {
 
-    // Summary Revenue
+    private String reportId;
+    private Integer periodMonth;
+    private Integer periodYear;
+    private Instant generatedAt;
+
+    // --- REVENUE AGGREGATION ---
     private BigDecimal totalRevenueBudget;
     private BigDecimal totalRevenueActual;
-    private BigDecimal revenueVariance; // Actual - Budget
+    private BigDecimal revenueVariance;
+    private Double revenueVariancePercentage;
 
-    // Summary OPEX
+    // --- OPEX AGGREGATION ---
     private BigDecimal totalOpexBudget;
     private BigDecimal totalOpexActual;
     private BigDecimal opexVariance;
+    private Double opexVariancePercentage;
 
-    // Summary CAPEX
+    // --- CAPEX AGGREGATION ---
     private BigDecimal totalCapexBudget;
     private BigDecimal totalCapexActual;
     private BigDecimal capexVariance;
+    private Double capexVariancePercentage;
 
-    // Financial Health Status
-    private BigDecimal netProfitBudget; // Total Revenue Budget - (Opex Budget + Capex Budget)
-    private BigDecimal netProfitActual; // Total Revenue Actual - (Opex Actual + Capex Actual)
+    // --- NET PROFIT / SUMMARY INDIKATOR ---
+    private BigDecimal netOperatingIncomeBudget; // Total Revenue Budget - Total Opex Budget
+    private BigDecimal netOperatingIncomeActual; // Total Revenue Actual - Total Opex Actual
+    private BigDecimal netOperatingIncomeVariance;
+
+    // --- LINE-ITEM BREAKDOWN ---
+    private List<FinancialVarianceDTO> details; // Total Revenue Actual - (Opex Actual + Capex Actual)
 }
