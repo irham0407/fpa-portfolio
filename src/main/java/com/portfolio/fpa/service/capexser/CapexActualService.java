@@ -74,15 +74,18 @@ public class CapexActualService {
                 Row row = sheet.getRow(i);
                 if (row == null) continue;
 
+                // Buat variabel final agar bisa diakses di dalam lambda expression
+                final int rowNum = i + 1;
+
                 // Format Excel:
                 // [0] Branch ID | [1] COA ID | [2] Nominal | [3] Deskripsi | [4] Bulan (1-12) | [5] Tahun | [6] Tgl Transaksi
                 Long branchId = (long) row.getCell(0).getNumericCellValue();
                 Long coaId = (long) row.getCell(1).getNumericCellValue();
 
                 Branch branch = branchRepository.findById(branchId)
-                        .orElseThrow(() -> new RuntimeException("Branch tidak ditemukan pada baris " + (i + 1)));
+                        .orElseThrow(() -> new RuntimeException("Branch tidak ditemukan pada baris " + rowNum));
                 Coa coa = coaRepository.findById(coaId)
-                        .orElseThrow(() -> new RuntimeException("COA tidak ditemukan pada baris " + (i + 1)));
+                        .orElseThrow(() -> new RuntimeException("COA tidak ditemukan pada baris " + rowNum));
 
                 CapexActual actual = CapexActual.builder()
                         .branch(branch)

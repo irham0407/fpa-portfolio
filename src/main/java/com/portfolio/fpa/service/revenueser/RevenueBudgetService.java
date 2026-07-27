@@ -71,15 +71,18 @@ public class RevenueBudgetService {
                 Row row = sheet.getRow(i);
                 if (row == null) continue;
 
+                // Buat variabel final untuk digunakan di dalam lambda expression
+                final int rowNum = i + 1;
+
                 // Format Excel:
                 // [0] Branch ID | [1] COA ID | [2] Budget Amount | [3] Month (1-12) | [4] Year
                 Long branchId = (long) row.getCell(0).getNumericCellValue();
                 Long coaId = (long) row.getCell(1).getNumericCellValue();
 
                 Branch branch = branchRepository.findById(branchId)
-                        .orElseThrow(() -> new RuntimeException("Branch tidak ditemukan pada baris " + (i + 1)));
+                        .orElseThrow(() -> new RuntimeException("Branch tidak ditemukan pada baris " + rowNum));
                 Coa coa = coaRepository.findById(coaId)
-                        .orElseThrow(() -> new RuntimeException("COA tidak ditemukan pada baris " + (i + 1)));
+                        .orElseThrow(() -> new RuntimeException("COA tidak ditemukan pada baris " + rowNum));
 
                 RevenueBudget budget = RevenueBudget.builder()
                         .branch(branch)
