@@ -23,4 +23,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Mengecek apakah sudah ada akun dengan role ADMIN di database
     // (Karena kebutuhan Anda: akun Admin di sistem ini hanya boleh ada 1)
     boolean existsByRole(String role);
+
 }
