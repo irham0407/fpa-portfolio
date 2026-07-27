@@ -31,9 +31,9 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // 1. Inisialisasi Cabang Utama/Pusat jika belum ada
-        Branch headOffice = branchRepository.findByBranchCode("HO-JKT")
+        Branch headOffice = branchRepository.findByBranchCode("JKT")
                 .orElseGet(() -> branchRepository.save(Branch.builder()
-                        .branchCode("HO-JKT")
+                        .branchCode("JKT")
                         .branchName("Kantor Pusat Jakarta")
                         .location("Jakarta Pusat")
                         .build()));
