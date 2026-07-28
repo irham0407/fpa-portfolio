@@ -1,5 +1,6 @@
 package com.portfolio.fpa.controller;
 
+import com.portfolio.fpa.dto.authdto.AuthResponse;
 import com.portfolio.fpa.dto.authdto.LoginRequest;
 import com.portfolio.fpa.dto.authdto.RegisterRequest;
 import com.portfolio.fpa.service.authser.AuthService;
@@ -15,25 +16,21 @@ public class AuthController {
 
     private final AuthService authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
-
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
+    public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         try {
-            String result = authService.registerUser(request);
-            return ResponseEntity.ok(result);
+            AuthResponse response = authService.registerUser(request);
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
-            String result = authService.login(request);
-            return ResponseEntity.ok(result);
+            AuthResponse response = authService.login(request);
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

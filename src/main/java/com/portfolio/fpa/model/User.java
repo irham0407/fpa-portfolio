@@ -44,4 +44,30 @@ public class User {
     protected void onCreate() {
         this.createdAt = Instant.now();
     }
+
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
+    @Column(name = "phone_number", length = 15, unique = true)
+    private String phoneNumber;
+
+    @Column(name = "job_title")
+    private String jobTitle;
+
+    @Builder.Default
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive = true;
+
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = Instant.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = Instant.now();
+    }
 }

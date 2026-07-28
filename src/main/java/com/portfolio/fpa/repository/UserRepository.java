@@ -24,4 +24,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // (Karena kebutuhan Anda: akun Admin di sistem ini hanya boleh ada 1)
     boolean existsByRole(String role);
 
+    boolean existsByPhoneNumber(String phoneNumber);
 }
