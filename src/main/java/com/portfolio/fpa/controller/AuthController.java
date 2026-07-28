@@ -4,6 +4,7 @@ import com.portfolio.fpa.dto.authdto.AuthResponse;
 import com.portfolio.fpa.dto.authdto.LoginRequest;
 import com.portfolio.fpa.dto.authdto.RegisterRequest;
 import com.portfolio.fpa.service.authser.AuthService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
