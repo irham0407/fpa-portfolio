@@ -40,11 +40,6 @@ public class User {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = Instant.now();
-    }
-
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
