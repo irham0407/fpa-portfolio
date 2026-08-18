@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import TopHeader from "../21.TopHeader";
 import "../../css_files/adminonlycss/3.CashAccountList.css";
 
 const CashAccountList = () => {
@@ -31,24 +32,9 @@ const CashAccountList = () => {
                 </ul>
             </aside>
 
-            {/* Konten Utama (Kanan) */}
             <main className="main-area">
-                {/* Header Profil Atas */}
-                <header className="top-header">
-                    <div className="profile-box">
-                        <div className="profile-info">
-                            <span className="profile-name">admin_fpa</span>
-                            <span className="profile-role">ADMIN</span>
-                        </div>
-                        <div className="avatar-icon">
-                            <svg viewBox="0 0 24 24" fill="#3bb2f6">
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M12 14c-6.1 0-8 4-8 4v2h16v-2s-1.9-4-8-4z" />
-                            </svg>
-                        </div>
-                        <span className="arrow-icon">▼</span>
-                    </div>
-                </header>
+            {/* Konten Utama (Kanan) */}
+                <TopHeader username="admin_fpa" role="ADMIN" />
 
                 {/* Area Isi Cash of Account List */}
                 <section className="content-section">
