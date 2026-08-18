@@ -1,0 +1,288 @@
+/* Layout Kontainer Utama */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    background-image: url('../../../assets/background1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Sidebar Navigasi */
+.sidebar {
+    width: 260px;
+    background: rgba(100, 150, 220, 0.45);
+    backdrop-filter: blur(8px);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 18px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.menu-item:hover, .menu-item.active {
+    color: #0284c7;
+}
+
+/* Main Area */
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+}
+
+/* Top Header */
+.top-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.profile-box {
+    background: rgba(100, 150, 220, 0.5);
+    backdrop-filter: blur(6px);
+    padding: 10px 25px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.profile-role {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.avatar-icon {
+    width: 50px;
+    height: 50px;
+    background: #93c5fd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.arrow-icon {
+    font-size: 14px;
+    color: #0f172a;
+}
+
+/* Content Section */
+.content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.page-title-banner {
+    background: rgba(100, 150, 220, 0.5);
+    backdrop-filter: blur(6px);
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.page-title-banner h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+/* Chart Container */
+.chart-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.chart-card {
+    background: white;
+    padding: 20px;
+    display: flex;
+    width: 400px;
+    height: 250px;
+    box-sizing: border-box;
+}
+
+.chart-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #000;
+    font-weight: 700;
+    padding-right: 15px;
+    border-right: 1px solid #cbd5e1;
+    text-align: right;
+    height: calc(100% - 20px);
+}
+
+.chart-bars-area {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding-left: 10px;
+    height: 100%;
+    position: relative;
+}
+
+.grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 0;
+}
+
+.grid-lines .line {
+    border-bottom: 1px solid #f1f5f9;
+    width: 100%;
+}
+
+.bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    gap: 5px;
+    z-index: 1;
+}
+
+.bar-value {
+    font-size: 12px;
+    font-weight: 800;
+    color: #000;
+}
+
+.bar {
+    width: 40px;
+    background-color: #06b6d4;
+}
+
+.bar-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: #000;
+    margin-top: 5px;
+}
+
+/* Select Year & Table Section */
+.table-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.select-year-box {
+    background: rgba(100, 150, 220, 0.6);
+    backdrop-filter: blur(4px);
+    width: fit-content;
+    padding: 10px 20px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #000;
+    border-radius: 4px;
+}
+
+/* Spreadsheet Table Styling */
+.spreadsheet-container {
+    background: #2d2d2d;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.spreadsheet-title-bar {
+    background: #232323;
+    color: #6b7280;
+    font-size: 11px;
+    text-align: center;
+    padding: 2px 0;
+    border-bottom: 2px solid #8b5cf6;
+}
+
+.spreadsheet-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #f3f4f6;
+    font-size: 13px;
+}
+
+.spreadsheet-table th, .spreadsheet-table td {
+    border: 1px solid #404040;
+    padding: 12px 10px;
+    text-align: center;
+}
+
+.spreadsheet-table th {
+    background-color: #333333;
+    font-weight: normal;
+    color: #9ca3af;
+    padding: 8px 10px;
+}
+
+.row-number, .row-number-header {
+    background-color: #333333;
+    color: #9ca3af;
+    width: 40px;
+}
+
+.col-header-text {
+    font-weight: 700;
+    color: #e5e7eb;
+}
+
+.spreadsheet-table tbody tr:hover td:not(.row-number) {
+    background-color: #3f3f46;
+}

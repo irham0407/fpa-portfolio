@@ -1,0 +1,91 @@
+.top-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 100;
+}
+
+.profile-box {
+    background: rgba(100, 150, 220, 0.5);
+    backdrop-filter: blur(6px);
+    padding: 10px 25px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.profile-role {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.avatar-icon {
+    width: 50px;
+    height: 50px;
+    background: #93c5fd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* Dropdown styling */
+.dropdown-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.arrow-icon {
+    font-size: 14px;
+    color: #000;
+    margin-left: 5px;
+    user-select: none;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 30px; /* Jarak dari ikon panah */
+    right: -10px;
+    background-color: #5c85d6; /* Sesuai warna di gambar dropdown */
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    overflow: hidden;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #4d73bf;
+}

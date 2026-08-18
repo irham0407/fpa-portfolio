@@ -1,0 +1,179 @@
+/* --- RESET BAWAAN VITE --- */
+:root, body, #root {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+}
+
+/* --- Background & Layout Utama --- */
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100vw;
+
+    /* --- KODE BACKGROUND GAMBAR --- */
+    background-image: url('../../../assets/background1.png');
+    background-size: cover;       /* Membuat gambar memenuhi seluruh layar */
+    background-position: center;  /* Memposisikan gambar di tengah */
+    background-repeat: no-repeat; /* Mencegah gambar berulang (tiling) */
+    /* ------------------------------ */
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Ikon Lingkaran Kiri --- */
+.login-avatar-container {
+    margin-right: -25px; /* Menarik ikon agar menempel/menumpuk dengan kartu */
+    z-index: 2;
+}
+
+.avatar-circle {
+    background: white;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-circle svg {
+    width: 70px;
+    height: 70px;
+}
+
+/* --- Kartu Form Login Utama --- */
+.login-card {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+    /* Bayangan diperbesar agar persis seperti gambar referensi */
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+}
+
+/* Membuat segitiga penunjuk kecil di sebelah kiri kartu */
+.login-card::before {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid white;
+}
+
+/* --- Teks Judul --- */
+.login-title {
+    text-align: center;
+    color: #a0a0a0;
+    font-weight: 300;
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+/* --- Kotak Notifikasi Error --- */
+.error-box {
+    background-color: #ffe6e6;
+    border: 1px solid #ffcccc;
+    color: #d32f2f;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.error-icon {
+    font-size: 24px;
+}
+
+.error-box p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* --- Kolom Input Form --- */
+.input-group {
+    display: flex;
+    background-color: #cfd8dc; /* Warna abu-abu background input */
+    margin-bottom: 15px;
+}
+
+.input-icon {
+    padding: 15px;
+    background-color: #b0bec5; /* Warna abu-abu ikon */
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+}
+
+.input-group input {
+    border: none;
+    background: transparent;
+    padding: 15px;
+    width: 100%;
+    outline: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* --- Checkbox dan Lupa Password --- */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.remember-me {
+    font-size: 13px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.forgot-password {
+    font-size: 13px;
+    color: #b0b0b0;
+    text-decoration: none;
+    font-style: italic;
+}
+
+/* --- Tombol Login --- */
+.btn-login {
+    width: 100%;
+    padding: 16px;
+    background-color: #3e3e3e; /* Warna gelap */
+    color: white;
+    border: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #222;
+}
