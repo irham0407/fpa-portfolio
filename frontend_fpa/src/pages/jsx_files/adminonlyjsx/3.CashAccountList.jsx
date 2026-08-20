@@ -1,21 +1,38 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TopHeader from "../21.TopHeader";
 import "../../css_files/adminonlycss/3.CashAccountList.css";
 
 const CashAccountList = () => {
     const navigate = useNavigate();
+    const [coas, setCoas] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
 
-    // Data COA sesuai desain Figma
-    const coaData = [
-        { code: "50001100", type: "OPEX", name: "Beban Gaji & Tunjangan" },
-        { code: "50001200", type: "OPEX", name: "Beban Sewa Gedung & Kantor" },
-        { code: "50001300", type: "OPEX", name: "Beban Listrik, Air & Internet" },
-        { code: "50001400", type: "OPEX", name: "Beban Perjalanan Dinas" },
-        { code: "50001500", type: "OPEX", name: "Beban Pemasaran & Promosi" },
-        { code: "61010001", type: "OPEX", name: "Beban Gaji & Tunjangan" },
-        { code: "61020002", type: "OPEX", name: "Beban Sewa Gedung & Kantor" },
-    ];
+    useEffect(() => {
+        const controller = new AbortController();
+
+        const loadCoas = async () => {
+            try {
+                const response = await fetch("/api/coas", { signal: controller.signal });
+                if (!response.ok) {
+                    throw new Error("Data COA tidak dapat dimuat.");
+                }
+                setCoas(await response.json());
+            } catch (err) {
+                if (err.name !== "AbortError") {
+                    setError(err.message || "Data COA tidak dapat dimuat.");
+                }
+            } finally {
+                if (!controller.signal.aborted) {
+                    setIsLoading(false);
+                }
+            }
+        };
+
+        loadCoas();
+        return () => controller.abort();
+    }, []);
 
     return (
         <div className="dashboard-container">
@@ -53,11 +70,26 @@ const CashAccountList = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            {coaData.map((item, index) => (
-                                <tr key={index}>
-                                    <td className="font-semibold">{item.code}</td>
-                                    <td>{item.type}</td>
-                                    <td>{item.name}</td>
+                            {isLoading && (
+                                <tr>
+                                    <td colSpan="3" className="table-message">Memuat data COA...</td>
+                                </tr>
+                            )}
+                            {!isLoading && error && (
+                                <tr>
+                                    <td colSpan="3" className="table-message table-error">{error}</td>
+                                </tr>
+                            )}
+                            {!isLoading && !error && coas.length === 0 && (
+                                <tr>
+                                    <td colSpan="3" className="table-message">Belum ada data COA.</td>
+                                </tr>
+                            )}
+                            {!isLoading && !error && coas.map((item) => (
+                                <tr key={item.coaCode}>
+                                    <td className="font-semibold">{item.coaCode}</td>
+                                    <td>{item.accountType}</td>
+                                    <td>{item.coaName}</td>
                                 </tr>
                             ))}
                             </tbody>

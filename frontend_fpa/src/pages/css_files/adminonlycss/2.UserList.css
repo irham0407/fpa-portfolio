@@ -169,6 +169,16 @@
     color: #1e293b;
 }
 
+.table-message {
+    padding: 24px 16px !important;
+    text-align: center;
+    color: #64748b !important;
+}
+
+.table-error {
+    color: #b91c1c !important;
+}
+
 /* Tombol Tambah User */
 .button-area {
     display: flex;

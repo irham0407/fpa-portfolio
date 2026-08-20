@@ -43,7 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
 
                         // 2. Master Data (Diizinkan publik)
-                        .requestMatchers("/api/branches/**", "/api/coas/**").permitAll()
+                        .requestMatchers("/api/branches/**", "/api/coas/**", "/api/users").permitAll()
 
                         // 3. SEMUA ENDPOINT ACTUAL (OPEX, REVENUE, CAPEX, dll.) -> HANYA ADMIN
                         .requestMatchers("/api/*-actuals/**").hasRole("ADMIN")

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../css_files/reportcss/FinalReport.css";
+import "../css_files/20.FinalReport.css";
 import TopHeader from "./21.TopHeader.jsx";
 
 const FinalReport = () => {
@@ -32,10 +32,11 @@ const FinalReport = () => {
                 </ul>
             </aside>
 
-            {/* Konten Utama (Kanan) */}
-            <TopHeader username="admin_fpa" role="ADMIN" />
+            <main className="main-area">
+                {/* Konten Utama (Kanan) */}
+                <TopHeader username="admin_fpa" role="ADMIN" />
 
-            {/* Area Konten */}
+                {/* Area Konten */}
                 <section className="content-section">
                     <div className="page-title-banner">
                         <h2>Final Report</h2>

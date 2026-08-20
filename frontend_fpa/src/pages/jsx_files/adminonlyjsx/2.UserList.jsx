@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TopHeader from "../21.TopHeader";
 import "../../css_files/adminonlycss/2.UserList.css";
@@ -8,16 +8,34 @@ const UserList = () => {
 
     // State untuk mengontrol muncul/tembusnya modal popup
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [users, setUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
 
-    // Data pengguna
-    const users = [
-        { username: "admin_fpa", role: "ADMIN", email: "admin@fpa-portfolio.com", fullName: "Irham Manthiqo Noor", phone: "", active: "" },
-        { username: "alexander", role: "USER", email: "alexander@fpa-portfolio.com", fullName: "Alexander Smith", phone: "", active: "" },
-        { username: "benjamin", role: "USER", email: "benjamin@fpa-portfolio.com", fullName: "Benjamin Carter", phone: "", active: "" },
-        { username: "christopher", role: "USER", email: "christopher@fpa-portfolio.com", fullName: "Christopher Wilson", phone: "", active: "" },
-        { username: "daniel", role: "USER", email: "danieln@fpa-portfolio.com", fullName: "Daniel Anderson", phone: "", active: "" },
-        { username: "ethan", role: "USER", email: "ethan@fpa-portfolio.com", fullName: "Ethan Thompson", phone: "", active: "" },
-    ];
+    useEffect(() => {
+        const controller = new AbortController();
+
+        const loadUsers = async () => {
+            try {
+                const response = await fetch("/api/users", { signal: controller.signal });
+                if (!response.ok) {
+                    throw new Error("Data pengguna tidak dapat dimuat.");
+                }
+                setUsers(await response.json());
+            } catch (err) {
+                if (err.name !== "AbortError") {
+                    setError(err.message || "Data pengguna tidak dapat dimuat.");
+                }
+            } finally {
+                if (!controller.signal.aborted) {
+                    setIsLoading(false);
+                }
+            }
+        };
+
+        loadUsers();
+        return () => controller.abort();
+    }, []);
 
     return (
         <div className="dashboard-container">
@@ -35,7 +53,7 @@ const UserList = () => {
             </aside>
 
             <main className="main-area">
-            {/* Konten Utama (Kanan) */}
+                {/* Konten Utama (Kanan) */}
                 <TopHeader username="admin_fpa" role="ADMIN" />
 
                 {/* Area Isi User List */}
@@ -49,23 +67,36 @@ const UserList = () => {
                         <table className="user-table">
                             <thead>
                             <tr>
-                                <th>Username</th>
-                                <th>Role</th>
-                                <th>Email</th>
                                 <th>Full Name</th>
+                                <th>Role</th>
+                                <th>Job Title</th>
+                                <th>Email</th>
                                 <th>Phone Number</th>
-                                <th>Active</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {users.map((item, index) => (
-                                <tr key={index}>
-                                    <td className="font-semibold">{item.username}</td>
+                            {isLoading && (
+                                <tr>
+                                    <td colSpan="5" className="table-message">Memuat data pengguna...</td>
+                                </tr>
+                            )}
+                            {!isLoading && error && (
+                                <tr>
+                                    <td colSpan="5" className="table-message table-error">{error}</td>
+                                </tr>
+                            )}
+                            {!isLoading && !error && users.length === 0 && (
+                                <tr>
+                                    <td colSpan="5" className="table-message">Belum ada data pengguna.</td>
+                                </tr>
+                            )}
+                            {!isLoading && !error && users.map((item) => (
+                                <tr key={item.id}>
+                                    <td className="font-semibold">{item.fullName}</td>
                                     <td>{item.role}</td>
+                                    <td>{item.jobTitle || "-"}</td>
                                     <td>{item.email}</td>
-                                    <td>{item.fullName}</td>
-                                    <td>{item.phone}</td>
-                                    <td>{item.active}</td>
+                                    <td>{item.phoneNumber || "-"}</td>
                                 </tr>
                             ))}
                             </tbody>
